@@ -8,10 +8,10 @@ public class Employee {
     private String family;
     private String EmpCode;
     private String password;
-    private Date entranceTime;
-    private Date exitTime;
+    private String entranceTime;
+    private String exitTime;
 
-    public Employee(long employeeId, String name, String family, String EmpCode, String password, Date entranceTime, Date exitTime) {
+    public Employee(long employeeId, String name, String family, String EmpCode, String password, String entranceTime, String exitTime) {
         this.employeeId = employeeId;
         this.name = name;
         this.family = family;
@@ -24,7 +24,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String family, String EmpCode, String password, Date entranceTime, Date exitTime) {
+    public Employee(String name, String family, String EmpCode, String password, String entranceTime, String exitTime) {
         this.name = name;
         this.family = family;
         this.EmpCode = EmpCode;
@@ -78,20 +78,20 @@ public class Employee {
         return this;
     }
 
-    public java.sql.Date getEntranceTime() {
+    public String getEntranceTime() {
         return entranceTime;
     }
 
-    public Employee setEntranceTime(Date entranceTime) {
+    public Employee setEntranceTime(String entranceTime) {
         this.entranceTime = entranceTime;
         return this;
     }
 
-    public java.sql.Date getExitTime() {
+    public String getExitTime() {
         return exitTime;
     }
 
-    public Employee setExitTime(Date exitTime) {
+    public Employee setExitTime(String exitTime) {
         this.exitTime = exitTime;
         return this;
     }

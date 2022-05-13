@@ -29,16 +29,16 @@ public class EmployeeDA implements AutoCloseable{
         preparedStatement.setString(3, employee.getFamily());
         preparedStatement.setString(4, employee.getEmpCode());
         preparedStatement.setString(5, employee.getPassword());
-        preparedStatement.setDate(6, employee.getEntranceTime());
-        preparedStatement.setDate(7, employee.getExitTime());
+        preparedStatement.setString(6, employee.getEntranceTime());
+        preparedStatement.setString(7, employee.getExitTime());
         preparedStatement.executeUpdate();
     }
 
 
     public void update(Employee employee) throws Exception {
         preparedStatement = connection.prepareStatement("update employee set entranceTime=? , exitTime=? where id=?");
-        preparedStatement.setDate(1, employee.getEntranceTime());
-        preparedStatement.setDate(2, employee.getExitTime());
+        preparedStatement.setString(1, employee.getEntranceTime());
+        preparedStatement.setString(2, employee.getExitTime());
         preparedStatement.setLong(3, employee.getEmployeeId());
         preparedStatement.executeUpdate();
     }
@@ -59,8 +59,8 @@ public class EmployeeDA implements AutoCloseable{
                     resultSet.getString("family"),
                     resultSet.getString("empCode"),
                     resultSet.getString("password"),
-                    resultSet.getDate("entranceTime"),
-                    resultSet.getDate("exitTime"));
+                    resultSet.getString("entranceTime"),
+                    resultSet.getString("exitTime"));
             employeeList.add(employee);
         }
         return employeeList;
@@ -78,8 +78,8 @@ public class EmployeeDA implements AutoCloseable{
                     resultSet.getString("family"),
                     resultSet.getString("empCode"),
                     resultSet.getString("password"),
-                    resultSet.getDate("entranceTime"),
-                    resultSet.getDate("exitTime"));
+                    resultSet.getString("entranceTime"),
+                    resultSet.getString("exitTime"));
             employeeList.add(employee1);
         }
         return employeeList;

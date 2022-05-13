@@ -35,16 +35,18 @@ public class EmployeeService {
         }
     }
 
-    public void setEntranceTime(Date date) throws Exception{
+    public void setEntranceTime(Employee employee)  throws Exception{
         try(EmployeeDA employeeDA =new EmployeeDA()){
-            employeeDA.update(new Employee().setEntranceTime(date));
+            long employeeId=login(employee).get(0).getEmployeeId();
+            employeeDA.update(new Employee().setEmployeeId(employeeId).setEntranceTime(employee.getEntranceTime()));
             employeeDA.commit();
         }
     }
 
-    public void setExitTime(Date date) throws Exception{
+    public void setExitTime(Employee employee) throws Exception{
         try(EmployeeDA employeeDA =new EmployeeDA()){
-            employeeDA.update(new Employee().setExitTime(date));
+            long employeeId=login(employee).get(0).getEmployeeId();
+            employeeDA.update(new Employee().setEmployeeId(employeeId).setExitTime(employee.getExitTime()));
             employeeDA.commit();
         }
     }
