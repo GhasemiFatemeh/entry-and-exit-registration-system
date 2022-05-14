@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Enumeration;
 
 @WebServlet("/employee")
 public class EmployeeTime extends HttpServlet {
@@ -18,12 +20,23 @@ public class EmployeeTime extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String empCode = (String) req.getSession().getAttribute("empCode");
         String password = (String) req.getSession().getAttribute("password");
-        String entranceTime = req.getParameter("entranceTime");
         try {
-            EmployeeService.getInstance().setEntranceTime(new Employee().setEmpCode(empCode).setPassword(password).setEntranceTime(entranceTime));
+            Enumeration<String> parameterNames = req.getParameterNames();
+            while (parameterNames.hasMoreElements()) {
+                String parameterName = parameterNames.nextElement();
+                if (parameterName.equals("entranceTime")) {
+                    EmployeeService.getInstance().setEntranceTime(new Employee().setEmpCode(empCode).setPassword(password).setEntranceTime(new Timestamp(Long.parseLong(req.getParameter(parameterName)))));
+
+                } else if (parameterName.equals("exitTime")) {
+                    EmployeeService.getInstance().setExitTime(new Employee().setEmpCode(empCode).setPassword(password).setExitTime(new Timestamp(Long.parseLong(req.getParameter(parameterName)))));
+
+                }
+
+            }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         }
+
 
     }
 

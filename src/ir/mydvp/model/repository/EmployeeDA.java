@@ -7,6 +7,7 @@ import ir.mydvp.model.entity.Role;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class EmployeeDA implements AutoCloseable{
         connection = JDBC.getConnection();
     }
 
-    public void insert(Employee employee) throws Exception {
+    public void insert(Employee employee) throws SQLException {
         preparedStatement = connection.prepareStatement("select employee_seq.nextval id from dual");
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
@@ -29,27 +30,32 @@ public class EmployeeDA implements AutoCloseable{
         preparedStatement.setString(3, employee.getFamily());
         preparedStatement.setString(4, employee.getEmpCode());
         preparedStatement.setString(5, employee.getPassword());
-        preparedStatement.setString(6, employee.getEntranceTime());
-        preparedStatement.setString(7, employee.getExitTime());
+        preparedStatement.setTimestamp(6, employee.getEntranceTime());
+        preparedStatement.setTimestamp(7, employee.getExitTime());
         preparedStatement.executeUpdate();
     }
 
 
-    public void update(Employee employee) throws Exception {
-        preparedStatement = connection.prepareStatement("update employee set entranceTime=? , exitTime=? where id=?");
-        preparedStatement.setString(1, employee.getEntranceTime());
-        preparedStatement.setString(2, employee.getExitTime());
-        preparedStatement.setLong(3, employee.getEmployeeId());
+    public void updateEntranceTime(Employee employee) throws SQLException {
+        preparedStatement = connection.prepareStatement("update employee set entranceTime=? where employeeId=?");
+        preparedStatement.setTimestamp(1, employee.getEntranceTime());
+        preparedStatement.setLong(2, employee.getEmployeeId());
         preparedStatement.executeUpdate();
     }
 
-    public void delete(Employee employee) throws Exception {
+    public void updateExitTime(Employee employee) throws SQLException {
+        preparedStatement = connection.prepareStatement("update employee set exitTime=? where employeeId=?");
+        preparedStatement.setTimestamp(1, employee.getExitTime());
+        preparedStatement.setLong(2, employee.getEmployeeId());
+        preparedStatement.executeUpdate();
+    }
+    public void delete(Employee employee) throws SQLException {
         preparedStatement = connection.prepareStatement("delete from employee where employeeId=?");
         preparedStatement.setLong(1, employee.getEmployeeId());
         preparedStatement.executeUpdate();
     }
 
-    public List<Employee> selectAll() throws Exception {
+    public List<Employee> selectAll() throws SQLException {
         preparedStatement = connection.prepareStatement("select * from employee");
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Employee> employeeList = new ArrayList<>();
@@ -59,14 +65,14 @@ public class EmployeeDA implements AutoCloseable{
                     resultSet.getString("family"),
                     resultSet.getString("empCode"),
                     resultSet.getString("password"),
-                    resultSet.getString("entranceTime"),
-                    resultSet.getString("exitTime"));
+                    resultSet.getTimestamp("entranceTime"),
+                    resultSet.getTimestamp("exitTime"));
             employeeList.add(employee);
         }
         return employeeList;
     }
 
-    public List<Employee> selectByEmpCodeAndPass(Employee employee) throws Exception{
+    public List<Employee> selectByEmpCodeAndPass(Employee employee) throws SQLException{
         preparedStatement= connection.prepareStatement("select * from employee where empCode=? and password=?");
         preparedStatement.setString(1, employee.getEmpCode());
         preparedStatement.setString(2, employee.getPassword());
@@ -78,14 +84,14 @@ public class EmployeeDA implements AutoCloseable{
                     resultSet.getString("family"),
                     resultSet.getString("empCode"),
                     resultSet.getString("password"),
-                    resultSet.getString("entranceTime"),
-                    resultSet.getString("exitTime"));
+                    resultSet.getTimestamp("entranceTime"),
+                    resultSet.getTimestamp("exitTime"));
             employeeList.add(employee1);
         }
         return employeeList;
     }
 
-    public List<Role> selectRoleOfEmployee(Employee employee) throws Exception{
+    public List<Role> selectRoleOfEmployee(Employee employee) throws SQLException{
         preparedStatement = connection.prepareStatement("select role from Role where employeeId=?");
         preparedStatement.setLong(1, employee.getEmployeeId());
         ResultSet resultSet= preparedStatement.executeQuery();
@@ -97,7 +103,7 @@ public class EmployeeDA implements AutoCloseable{
         return roleList;
     }
 
-    public void commit() throws Exception {
+    public void commit() throws SQLException {
         connection.commit();
     }
 

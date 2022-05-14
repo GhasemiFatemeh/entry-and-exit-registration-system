@@ -1,21 +1,21 @@
 package ir.mydvp.model.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Employee {
     private long employeeId;
     private String name;
     private String family;
-    private String EmpCode;
+    private String empCode;
     private String password;
-    private String entranceTime;
-    private String exitTime;
+    private Timestamp entranceTime;
+    private Timestamp exitTime;
 
-    public Employee(long employeeId, String name, String family, String EmpCode, String password, String entranceTime, String exitTime) {
+    public Employee(long employeeId, String name, String family, String empCode, String password, Timestamp entranceTime, Timestamp exitTime) {
         this.employeeId = employeeId;
         this.name = name;
         this.family = family;
-        this.EmpCode = EmpCode;
+        this.empCode = empCode;
         this.password = password;
         this.entranceTime = entranceTime;
         this.exitTime = exitTime;
@@ -24,10 +24,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String name, String family, String EmpCode, String password, String entranceTime, String exitTime) {
+    public Employee(String name, String family, String empCode, String password,  Timestamp entranceTime, Timestamp exitTime) {
         this.name = name;
         this.family = family;
-        this.EmpCode = EmpCode;
+        this.empCode = empCode;
         this.password = password;
         this.entranceTime = entranceTime;
         this.exitTime = exitTime;
@@ -61,11 +61,11 @@ public class Employee {
     }
 
     public String getEmpCode() {
-        return EmpCode;
+        return empCode;
     }
 
     public Employee setEmpCode(String empCode) {
-        this.EmpCode = empCode;
+        this.empCode = empCode;
         return this;
     }
 
@@ -78,20 +78,20 @@ public class Employee {
         return this;
     }
 
-    public String getEntranceTime() {
+    public Timestamp getEntranceTime() {
         return entranceTime;
     }
 
-    public Employee setEntranceTime(String entranceTime) {
+    public Employee setEntranceTime(Timestamp entranceTime) {
         this.entranceTime = entranceTime;
         return this;
     }
 
-    public String getExitTime() {
+    public Timestamp getExitTime() {
         return exitTime;
     }
 
-    public Employee setExitTime(String exitTime) {
+    public Employee setExitTime(Timestamp exitTime) {
         this.exitTime = exitTime;
         return this;
     }

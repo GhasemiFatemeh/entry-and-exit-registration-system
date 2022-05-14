@@ -5,7 +5,7 @@
   Time: 10:20 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <link href="../assets/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     let nowDate = new Date;
     function setTime(timeType) {
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/employee/?"+timeType+"="+nowDate.toUTCString(), false);
+        xhttp.open("GET", "/employee?"+timeType+"="+nowDate.getTime(), false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
         document.getElementById("timeShow").innerHTML =timeType+":  "+ nowDate.toUTCString();
