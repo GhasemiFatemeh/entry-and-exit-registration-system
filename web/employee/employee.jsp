@@ -16,6 +16,11 @@
         outline: none;
         box-shadow: none;
     }
+
+    body{
+        background-image: url("../images/3013992.jpg");
+        background-attachment: fixed;
+    }
 </style>
 <body>
 <div class="border m-4 p-1 text-center rounded">
