@@ -5,4 +5,4 @@ create table employee(employeeId number, name varchar2(20), family varchar2(20),
 
 create sequence employee_seq start with 1 increment by 1;
 
-create table role (personId number, role varchar2(10));
+create table role (employeeId number, role varchar2(10));
