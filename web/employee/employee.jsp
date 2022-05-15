@@ -18,12 +18,19 @@
     }
 
     body{
-        background-image: url("../images/3013992.jpg");
-        background-attachment: fixed;
+        background: url("../images/3013992.jpg") no-repeat fixed;
+        background-size: cover;
+    }
+
+    #timeSetSection{
+        background: #abbaab;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #ffffff, #5c636a);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #ffffff, #5c636a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     }
 </style>
 <body>
-<div class="border m-4 p-1 text-center rounded">
+<div class=" m-4 p-1 text-center rounded" id="timeSetSection">
     <h4 class="text-center m-2">Choose the moment of your Entry or Exit</h4>
     <form action="/employee" method="Get">
         <button name="entranceTime" type="button" class="btn btn-success" onclick="setTime('entranceTime')">Entry</button>
