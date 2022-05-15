@@ -18,8 +18,8 @@
     }
 </style>
 <body>
-<div class="container border m-4 p-1 text-center">
-    <h4>Choose the moment of your Entry or Exit</h4>
+<div class="border m-4 p-1 text-center rounded">
+    <h4 class="text-center m-2">Choose the moment of your Entry or Exit</h4>
     <form action="/employee" method="Get">
         <button name="entranceTime" type="button" class="btn btn-success" onclick="setTime('entranceTime')">Entry</button>
         <button name="exitTime" type="button" class="btn btn-danger" onclick="setTime('exitTime')">Exit</button>
