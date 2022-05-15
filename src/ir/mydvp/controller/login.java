@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/login")
 public class login extends HttpServlet {
@@ -27,8 +26,8 @@ public class login extends HttpServlet {
 
             String empCode = req.getParameter("empCode");
             String password = req.getParameter("password");
-            List<Employee> login = EmployeeService.getInstance().login(new Employee().setEmpCode(empCode).setPassword(password));
-            if (!login.isEmpty()){
+            Employee login = EmployeeService.getInstance().findPerson(new Employee().setEmpCode(empCode).setPassword(password));
+            if (login!=null){
                 req.getSession().setAttribute("empCode", empCode);
                 req.getSession().setAttribute("password", password);
                 resp.sendRedirect("/employee/employee.jsp");

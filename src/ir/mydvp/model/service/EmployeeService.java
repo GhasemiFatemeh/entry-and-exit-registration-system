@@ -39,7 +39,7 @@ public class EmployeeService {
 
     public void setEntranceTime(Employee employee) throws Exception {
         try (EmployeeDA employeeDA = new EmployeeDA()) {
-            long employeeId = login(employee).get(0).getEmployeeId();
+            long employeeId = findPerson(employee).getEmployeeId();
             employeeDA.updateEntranceTime(new Employee().setEmployeeId(employeeId).setEntranceTime(employee.getEntranceTime()));
             employeeDA.commit();
         }
@@ -47,13 +47,13 @@ public class EmployeeService {
 
     public void setExitTime(Employee employee) throws Exception {
         try (EmployeeDA employeeDA = new EmployeeDA()) {
-            long employeeId = login(employee).get(0).getEmployeeId();
+            long employeeId = findPerson(employee).getEmployeeId();
             employeeDA.updateExitTime(new Employee().setEmployeeId(employeeId).setExitTime(employee.getExitTime()));
             employeeDA.commit();
         }
     }
 
-    public List<Employee> login(Employee employee) throws Exception {
+    public Employee findPerson(Employee employee) throws Exception {
         try (EmployeeDA employeeDA = new EmployeeDA()) {
             return employeeDA.selectByEmpCodeAndPass(employee);
         }

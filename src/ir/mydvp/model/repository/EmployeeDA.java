@@ -72,23 +72,22 @@ public class EmployeeDA implements AutoCloseable{
         return employeeList;
     }
 
-    public List<Employee> selectByEmpCodeAndPass(Employee employee) throws SQLException{
+    public Employee selectByEmpCodeAndPass(Employee employee) throws SQLException{
         preparedStatement= connection.prepareStatement("select * from employee where empCode=? and password=?");
         preparedStatement.setString(1, employee.getEmpCode());
         preparedStatement.setString(2, employee.getPassword());
         ResultSet resultSet= preparedStatement.executeQuery();
-        List<Employee> employeeList =new ArrayList<>();
-        while (resultSet.next()){
-            Employee employee1 = new Employee(resultSet.getLong("employeeId"),
+        Employee employee1= new Employee();
+        if (resultSet.next()){
+            employee1 = new Employee(resultSet.getLong("employeeId"),
                     resultSet.getString("name"),
                     resultSet.getString("family"),
                     resultSet.getString("empCode"),
                     resultSet.getString("password"),
                     resultSet.getTimestamp("entranceTime"),
                     resultSet.getTimestamp("exitTime"));
-            employeeList.add(employee1);
         }
-        return employeeList;
+        return employee1;
     }
 
     public List<Role> selectRoleOfEmployee(Employee employee) throws SQLException{
