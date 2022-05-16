@@ -114,15 +114,18 @@
     function requestToDifferentPages(panel) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
+            if (this.readyState===4){
                 // Typical action to be performed when the document is ready:
-              location.href="../"+panel+"/"+panel+".jsp";
-            }
-            else {
-                myFunction();
+                console.log(this.status);
+                if (this.status===200){
+                    location.href="../"+panel+"/"+panel+".jsp";
+                }
+                else {
+                    myFunction();
+                }
             }
         };
-        xhttp.open("GET", "/"+ panel, false);
+        xhttp.open("GET", "/"+ panel+"/"+panel+".jsp");
         xhttp.send();
 
     }

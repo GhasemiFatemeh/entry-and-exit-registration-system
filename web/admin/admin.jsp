@@ -9,7 +9,12 @@
 <html>
 <head>
     <title>admin panel</title>
+    <link href="../assets/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background: url("../images/7823414.jpg") no-repeat fixed;
+            background-size: cover;
+        }
         #snackbar {
             visibility: hidden;
             min-width: 250px;
@@ -54,15 +59,11 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
-            <li><a onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
+<nav class="navbar">
+    <div class="container-fluid row">
+        <ul class="">
+            <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
+            <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
         </ul>
     </div>
 </nav>
@@ -77,15 +78,18 @@
     function requestToDifferentPages(panel) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
+            if (this.readyState===4){
                 // Typical action to be performed when the document is ready:
-                console.log('response:', xhttp.responseText);
-            }
-            else {
-                myFunction();
+                console.log(this.status);
+                if (this.status===200){
+                    location.href="../"+panel+"/"+panel+".jsp";
+                }
+                else {
+                    myFunction();
+                }
             }
         };
-        xhttp.open("GET", "/"+ panel, false);
+        xhttp.open("GET", "/"+ panel+"/"+panel+".jsp");
         xhttp.send();
 
     }

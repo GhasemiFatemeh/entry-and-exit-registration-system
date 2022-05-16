@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebFilter("/admin")
+@WebFilter("/admin/*")
 public class AdminAccessMonitor implements Filter {
 
     @Override
@@ -27,14 +27,19 @@ public class AdminAccessMonitor implements Filter {
         String password = (String) request.getSession().getAttribute("password");
         Employee employee = new Employee().setEmpCode(empCode).setPassword(password);
         try {
-            List<Role> employeeRoles = RoleService.getInstance().getEmployeeRoles(employee);
-            for (Role employeeRole : employeeRoles) {
-                if (employeeRole.getRole().equals("admin")){
-                    filterChain.doFilter(servletRequest, servletResponse);
-                    return;
+            if (empCode!= null && password!= null){
+                List<Role> employeeRoles = RoleService.getInstance().getEmployeeRoles(employee);
+                for (Role employeeRole : employeeRoles) {
+                    if (employeeRole.getRole().equals("admin")){
+                        filterChain.doFilter(servletRequest, servletResponse);
+                        return;
+                    }
                 }
+                response.sendError(403);
+            }else {
+                response.sendRedirect("/login.jsp");
             }
-            response.sendError(403);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
