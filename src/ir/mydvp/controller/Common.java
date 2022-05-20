@@ -18,13 +18,13 @@ public class Common extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        String adminUserName = config.getServletContext().getInitParameter("adminUserName");
-        String adminPass = config.getServletContext().getInitParameter("adminPass");
+        String adminUserName = config.getInitParameter("adminUserName");
+        String adminPass = config.getInitParameter("adminPass");
         try {
             Employee employee= new Employee().setEmpCode(adminUserName).setPassword(adminPass);
             EmployeeService.getInstance().save(employee);
-            long employeeId = EmployeeService.getInstance().findPerson(employee).getEmployeeId();
-            RoleService.getInstance().save(new Role().setEmployeeId(employeeId).setRole("admin"));
+            //because employee is call by reference, I can set current employeeId without select it from db
+            RoleService.getInstance().save(new Role().setEmployeeId(employee.getEmployeeId()).setRole("admin"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
