@@ -16,7 +16,7 @@
     <h1 class="h1 text-center text-capitalize m-2">login</h1>
 </header>
 <div class="container border rounded p-4">
-    <form action="/login">
+    <form action="/login.do">
         <div class="form-group mb-3">
             <label for="code">Employee Code</label>
             <input class="form-control" id="code"  name="empCode" placeholder="Enter Your Employee code...">
