@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.sql.Timestamp;
 
-@WebServlet("/admin/admin.do")
-public class Admin extends HttpServlet {
+@WebServlet("/employee/exitTime.do")
+public class ExitTime extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String empCode = (String) req.getSession().getAttribute("empCode");
+        String password = (String) req.getSession().getAttribute("password");
+        long currentTimeMillis = System.currentTimeMillis();
         try {
-            List<Employee> employees = EmployeeService.getInstance().findAll();
-            req.setAttribute("list", employees);
-            req.getRequestDispatcher("/admin/admin.jsp").forward(req, resp);
+            EmployeeService.getInstance().setExitTime(new Employee().setEmpCode(empCode).setPassword(password).setExitTime(new Timestamp(currentTimeMillis)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }

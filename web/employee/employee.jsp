@@ -78,15 +78,16 @@
         <ul class="">
             <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
             <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
+            <li class="nav-item d-inline m-3"><button class="btn btn-danger" onclick="logout()">log out</button></li>
         </ul>
     </div>
 </nav>
 <div class=" m-4 p-1 text-center rounded" id="timeSetSection">
     <h4 class="text-center m-2">Choose the moment of your Entry or Exit</h4>
     <form action="/employee" method="Get">
-        <button name="entranceTime" type="button" class="btn btn-success" onclick="setTime('entranceTime')">Entry
+        <button name="entranceTime" type="button" class="btn btn-success" onclick="setTime('entranceTime.do')">Entry
         </button>
-        <button name="exitTime" type="button" class="btn btn-danger" onclick="setTime('exitTime')">Exit</button>
+        <button name="exitTime" type="button" class="btn btn-danger" onclick="setTime('exitTime.do')">Exit</button>
     </form>
     <p id="timeShow" class=""></p>
 </div>
@@ -99,10 +100,10 @@
 
     function setTime(timeType) {
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/employee?" + timeType + "=" + nowDate.getTime(), false);
+        xhttp.open("GET", "/employee/" + timeType, false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send();
-        document.getElementById("timeShow").innerHTML = timeType + ":  " + nowDate.toUTCString();
+        document.getElementById("timeShow").innerHTML = timeType.replace(".do","").replace("Time","") + ":  " + nowDate.toUTCString();
     }
 
     function myFunction() {
@@ -118,16 +119,20 @@
                 // Typical action to be performed when the document is ready:
                 console.log(this.status);
                 if (this.status===200){
-                    location.href="../"+panel+"/"+panel+".jsp";
+                    location.href="../"+panel+"/"+panel+".do";
                 }
                 else {
                     myFunction();
                 }
             }
         };
-        xhttp.open("GET", "/"+ panel+"/"+panel+".jsp");
+        xhttp.open("GET", "/"+ panel+"/"+panel+".do");
         xhttp.send();
-
+    }
+    function logout() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/logout.do");
+        xhttp.send();
     }
 </script>
 
