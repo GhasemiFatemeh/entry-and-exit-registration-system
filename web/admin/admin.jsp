@@ -62,11 +62,17 @@
 <body>
 <nav class="navbar">
     <div class="container-fluid row">
-        <ul class="">
-            <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
-            <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
-            <li class="nav-item d-inline m-3"><button class="btn btn-danger" onclick="logout()">log out</button></li>
-        </ul>
+        <div class="col-6">
+            <ul class="">
+                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
+                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <ul class="">
+                <li class="nav-item text-end m-3"><button class="btn btn-danger" onclick="logout()">log out</button></li>
+            </ul>
+        </div>
     </div>
 </nav>
 <div class="container">
