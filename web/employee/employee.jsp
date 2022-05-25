@@ -73,21 +73,7 @@
     }
 </style>
 <body>
-<nav class="navbar">
-    <div class="container-fluid row">
-        <div class="col-6">
-            <ul class="">
-                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
-                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
-            </ul>
-        </div>
-        <div class="col-6">
-            <ul class="">
-                <li class="nav-item text-end m-3"><button class="btn btn-danger" onclick="logout()">log out</button></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="../menu.jsp"></jsp:include>
 <div class=" m-4 p-1 text-center rounded" id="timeSetSection">
     <h4 class="text-center m-2">Choose the moment of your Entry or Exit</h4>
     <form action="/employee" method="Get">
@@ -137,7 +123,12 @@
     }
     function logout() {
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/logout.do");
+        xhttp.onreadystatechange= function (){
+            if (this.status===200){
+                location.href='../index.jsp'
+            }
+        }
+        xhttp.open("GET", "/logout.do", false);
         xhttp.send();
     }
 </script>

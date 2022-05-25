@@ -16,27 +16,6 @@
             background: url("../images/7823414.jpg") no-repeat fixed;
             background-size: cover;
         }
-        #snackbar {
-            visibility: hidden;
-            min-width: 250px;
-            margin-left: -125px;
-            background-color: whitesmoke;
-            color: black;
-            text-align: center;
-            border-radius: 10px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-
-        #snackbar.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
 
         @-webkit-keyframes fadein {
             from {bottom: 0; opacity: 0;}
@@ -60,21 +39,7 @@
     </style>
 </head>
 <body>
-<nav class="navbar">
-    <div class="container-fluid row">
-        <div class="col-6">
-            <ul class="">
-                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('admin')">Admin Panel</a></li>
-                <li class="nav-item d-inline m-3"><a href="#" class="text-decoration-none text-white" onclick="requestToDifferentPages('employee')">Employee Panel</a></li>
-            </ul>
-        </div>
-        <div class="col-6">
-            <ul class="">
-                <li class="nav-item text-end m-3"><button class="btn btn-danger" onclick="logout()">log out</button></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="../menu.jsp"></jsp:include>
 <div class="container">
     <table class="table table-hover table-dark table-bordered table-responsive w-100">
         <tr>
@@ -117,6 +82,11 @@
     }
     function logout() {
         const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange= function (){
+            if (this.status===200){
+                location.href='../index.jsp'
+            }
+        }
         xhttp.open("GET", "/logout.do");
         xhttp.send();
     }
