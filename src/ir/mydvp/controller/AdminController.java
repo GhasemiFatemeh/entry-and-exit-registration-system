@@ -1,7 +1,7 @@
 package ir.mydvp.controller;
 
 import ir.mydvp.model.entity.Employee;
-import ir.mydvp.model.service.EmployeeService;
+import ir.mydvp.model.service.AdminService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ public class AdminController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<Employee> employees = EmployeeService.getInstance().findAll();
+            List<Employee> employees = AdminService.getInstance().findAll();
             req.setAttribute("list", employees);
             req.getRequestDispatcher("/admin/admin.jsp").forward(req, resp);
         } catch (Exception e) {

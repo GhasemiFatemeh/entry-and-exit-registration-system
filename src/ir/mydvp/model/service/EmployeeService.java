@@ -31,11 +31,6 @@ public class EmployeeService {
         }
     }
 
-    public List<Employee> findAll() throws Exception {
-        try (EmployeeDA employeeDA = new EmployeeDA()) {
-            return employeeDA.selectAll();
-        }
-    }
 
     public void setEntranceTime(Employee employee) throws Exception {
         try (EmployeeDA employeeDA = new EmployeeDA()) {
