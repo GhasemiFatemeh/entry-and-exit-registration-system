@@ -29,8 +29,13 @@
         <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">keep my password</label>
+            <span class="m-2 float-end">
+                Don't have an account? <a href="register.jsp">Register!</a>
+            </span>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>
 </body>
