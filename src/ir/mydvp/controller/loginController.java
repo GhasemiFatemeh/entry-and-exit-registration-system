@@ -1,8 +1,5 @@
 package ir.mydvp.controller;
 
-import ir.mydvp.model.entity.Employee;
-import ir.mydvp.model.service.EmployeeService;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/login.do")
-public class login extends HttpServlet {
+public class loginController extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {

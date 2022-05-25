@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 
 @WebServlet("/employee/exitTime.do")
-public class ExitTime extends HttpServlet {
+public class ExitTimeController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String empCode = (String) req.getSession().getAttribute("empCode");

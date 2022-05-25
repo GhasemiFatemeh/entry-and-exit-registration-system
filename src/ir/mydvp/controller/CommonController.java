@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/init")
-public class Common extends HttpServlet {
+public class CommonController extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {

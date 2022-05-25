@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>init</servlet-name>
-        <servlet-class>ir.mydvp.controller.Common</servlet-class>
+        <servlet-class>ir.mydvp.controller.CommonController</servlet-class>
         <init-param>
             <param-name>adminUserName</param-name>
             <param-value>admin</param-value>

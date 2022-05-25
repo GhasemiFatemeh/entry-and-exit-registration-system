@@ -7,11 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/logout.do")
-public class LogOut extends HttpServlet {
+@WebServlet("/employee/employee.do")
+public class EmployeeController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().invalidate();
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect("/employee/employee.jsp");
     }
 }
