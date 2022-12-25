@@ -14,9 +14,6 @@ public class EmployeeDA implements AutoCloseable{
 
     public EmployeeDA() throws Exception {
         connection = JDBC.getConnection();
-        preparedStatement = connection.prepareStatement("create table employee(employeeId number, name varchar2(20), family varchar2(20), empCode varchar2(20), password varchar2(20), entranceTime timeStamp, exitTime timeStamp)");
-        preparedStatement.execute();
-        preparedStatement.close();
     }
 
 
