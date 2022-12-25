@@ -4,10 +4,7 @@ import ir.mydvp.common.JDBC;
 import ir.mydvp.model.entity.Employee;
 import ir.mydvp.model.entity.Role;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,11 @@ public class EmployeeDA implements AutoCloseable{
 
     public EmployeeDA() throws Exception {
         connection = JDBC.getConnection();
+        preparedStatement = connection.prepareStatement("create table employee(employeeId number, name varchar2(20), family varchar2(20), empCode varchar2(20), password varchar2(20), entranceTime timeStamp, exitTime timeStamp)");
+        preparedStatement.execute();
+        preparedStatement.close();
     }
+
 
     public void insert(Employee employee) throws SQLException {
         preparedStatement = connection.prepareStatement("select employee_seq.nextval id from dual");

@@ -9,7 +9,7 @@ public class JDBC {
 
     static {
         BASIC_DATA_SOURCE.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-        BASIC_DATA_SOURCE.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+        BASIC_DATA_SOURCE.setUrl("jdbc:oracle:thin:@localhost:1521:orcl");
         BASIC_DATA_SOURCE.setUsername("fatemeh");
         BASIC_DATA_SOURCE.setPassword("myjava123");
         BASIC_DATA_SOURCE.setMaxTotal(10);
